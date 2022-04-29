@@ -1,8 +1,8 @@
 // Java script for Quiz project 
-
-const quizData = [
+//creating the question bank 
+const questionDatabase = [
     {
-        question: "Which of the following property changes the width of left border?",
+        question: "1.Which of the following property changes the width of left border?",
         a: "border bottom width",
         b: "border top width",
         c: "border left width",
@@ -10,7 +10,7 @@ const quizData = [
         correct: "c",
     },    
     {
-        question: "Which of the following property is used to control the flow and formatting of text?",
+        question: "2.Which of the following property is used to control the flow and formatting of text?",
         a: "white space",
         b: "text shadow",
         c: "text decoration",
@@ -18,7 +18,7 @@ const quizData = [
         correct: "a",
     },    
     {
-        question: "Which of the following property is used to set the color of a text?",
+        question: "3.Which of the following property is used to set the color of a text?",
         a: "colour",
         b: "direction",
         c: "letter spacing",
@@ -26,7 +26,7 @@ const quizData = [
         correct: "c",
     },    
     {
-        question: "Which of the following property is used to create a small-caps effect?",
+        question: "4.Which of the following property is used to create a small-caps effect?",
         a: "font family",
         b: "font style",
         c: "font variant",
@@ -34,7 +34,7 @@ const quizData = [
         correct: "a",
     },    
     {
-        question: "Where is the correct place to insert a JavaScript?",
+        question: "5.Where is the correct place to insert a JavaScript?",
         a: "head section",
         b: "body section",
         c: "both head and body section",
@@ -42,7 +42,7 @@ const quizData = [
         correct: "a",
     },    
     {
-        question: "Inside which HTML element do we put the JavaScript?",
+        question: "6.Inside which HTML element do we put the JavaScript?",
         a: "<script>",
         b: "<js>",
         c: "<scripting>",
@@ -50,7 +50,7 @@ const quizData = [
         correct: "a",
     },
     {
-        question: "Which language runs in a web browser?",
+        question: "7.Which language runs in a web browser?",
         a: "Java",
         b: "C",
         c: "Python",
@@ -58,7 +58,7 @@ const quizData = [
         correct: "d",
     },
     {
-        question: "What does CSS stand for?",
+        question: "8.What does CSS stand for?",
         a: "Central Style Sheets",
         b: "Cascading Style Sheets",
         c: "Cascading Simple Sheets",
@@ -66,7 +66,7 @@ const quizData = [
         correct: "b",
     },
     {
-        question: "What does HTML stand for?",
+        question: "9.What does HTML stand for?",
         a: "Hypertext Markup Language",
         b: "Hypertext Markdown Language",
         c: "Hyperloop Machine Language",
@@ -74,7 +74,7 @@ const quizData = [
         correct: "a",
     },
     {
-        question: "What year was JavaScript launched?",
+        question: "10.What year was JavaScript launched?",
         a: "1996",
         b: "1995",
         c: "1994",
@@ -105,13 +105,13 @@ function loadQuiz() {
 
     deselectAnswers()
 
-    const currentQuizData = quizData[currentQuiz]
+    const currentquestionDatabase = questionDatabase[currentQuiz]
 
-    questionEl.innerText = currentQuizData.question
-    a_text.innerText = currentQuizData.a
-    b_text.innerText = currentQuizData.b
-    c_text.innerText = currentQuizData.c
-    d_text.innerText = currentQuizData.d
+    questionEl.innerText = currentquestionDatabase.question
+    a_text.innerText = currentquestionDatabase.a
+    b_text.innerText = currentquestionDatabase.b
+    c_text.innerText = currentquestionDatabase.c
+    d_text.innerText = currentquestionDatabase.d
 }
 
 function deselectAnswers() {
@@ -132,17 +132,21 @@ function getSelected() {
 submitBtn.addEventListener('click', () => {
     const answer = getSelected()
     if(answer) {
-       if(answer === quizData[currentQuiz].correct) {
+       if(answer === questionDatabase[currentQuiz].correct) {
            score++
+           alert("Congradulations! right answer");
        }
+       else
+       {alert("Sorry Wrong answer. Try Again");}
+       
 
        currentQuiz++
 
-       if(currentQuiz < quizData.length) {
+       if(currentQuiz < questionDatabase.length) {
            loadQuiz()
        } else {
            quiz.innerHTML = `
-           <h2>You have answered ${score}/${quizData.length} questions correctly</h2>
+           <h2>You have answered ${score}/${questionDatabase.length} questions correctly</h2>
            
 
            <button onclick="location.reload()">Reload</button>
