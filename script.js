@@ -1,5 +1,5 @@
 // Java script for Quiz project 
-//creating the question bank 
+//creating the question bank array 
 const questionDatabase = [
     {
         question: "1.Which of the following property changes the width of left border?",
@@ -50,77 +50,79 @@ const questionDatabase = [
         correct: "a",
     },
     {
-        question: "7.Which language runs in a web browser?",
-        a: "Java",
-        b: "C",
-        c: "Python",
-        d: "javascript",
+        question: "7.Which Of The Dialog Box Display a Message And a Data Entry Field??",
+        a: "Alert()",
+        b: "Prompt()",
+        c: "Confirm()",
+        d: "Msg()",
+        correct: "b",
+    },
+    {
+        question: "8.If Button is clicked .......Event Handler is invoked.?",
+        a: "OnSubmit()",
+        b: "OnLoad()",
+        c: "IsPostBack()",
+        d: "OnClick()",
         correct: "d",
     },
     {
-        question: "8.What does CSS stand for?",
-        a: "Central Style Sheets",
-        b: "Cascading Style Sheets",
-        c: "Cascading Simple Sheets",
-        d: "Cars SUVs Sailboats",
+        question: "9.A Function Associated With An object is Called?",
+        a: "function",
+        b: "method",
+        c: "link",
+        d: "none",
         correct: "b",
     },
     {
-        question: "9.What does HTML stand for?",
-        a: "Hypertext Markup Language",
-        b: "Hypertext Markdown Language",
-        c: "Hyperloop Machine Language",
-        d: "Helicopters Terminals Motorboats Lamborginis",
-        correct: "a",
-    },
-    {
-        question: "10.What year was JavaScript launched?",
-        a: "1996",
-        b: "1995",
-        c: "1994",
+        question: "10.JavaScript File Has An Extension of?",
+        a: "html",
+        b: "script",
+        c: "js",
         d: "none of the above",
-        correct: "b",
+        correct: "c",
     },
 
 
 ];
-
+//The getElementById () method returns the element that has the ID attribute with the specified value. 
+//The querySelectorAll() method returns a collection of an element's child elements that match a specified CSS selector(s), as a static NodeList object.
+// Moving the values to required constants
 const quiz= document.getElementById('quiz')
-const answerEls = document.querySelectorAll('.answer')
-const questionEl = document.getElementById('question')
+const answerElement = document.querySelectorAll('.answer')
+const questionhtmlEle = document.getElementById('question')
 const a_text = document.getElementById('a_text')
 const b_text = document.getElementById('b_text')
 const c_text = document.getElementById('c_text')
 const d_text = document.getElementById('d_text')
 const submitBtn = document.getElementById('submit')
 
-
+// initializing the currentquiz and score values to 0
 let currentQuiz = 0
 let score = 0
-
+//loadquiz function will return answer selected
 loadQuiz()
 
 
 function loadQuiz() {
 
-    deselectAnswers()
+    deselectAns()
 
     const currentquestionDatabase = questionDatabase[currentQuiz]
 
-    questionEl.innerText = currentquestionDatabase.question
+    questionhtmlEle.innerText = currentquestionDatabase.question
     a_text.innerText = currentquestionDatabase.a
     b_text.innerText = currentquestionDatabase.b
     c_text.innerText = currentquestionDatabase.c
     d_text.innerText = currentquestionDatabase.d
 }
 
-function deselectAnswers() {
-    answerEls.forEach(answerEl => answerEl.checked = false)
+function deselectAns() {
+    answerElement.forEach(answerEl => answerEl.checked = false)
 }
 
 function getSelected() {
     let answer
-    answerEls.forEach(answerEl => {
+    answerElement.forEach(answerEl => {
         if(answerEl.checked) {
             answer = answerEl.id
         }
@@ -128,7 +130,8 @@ function getSelected() {
     return answer
 }
 
-
+// Submitbtn will check for the answers are wrong / right by checking the answer variable
+//alert function enabled for each answer for the right or wrong answers
 submitBtn.addEventListener('click', () => {
     const answer = getSelected()
     if(answer) {
@@ -154,7 +157,7 @@ submitBtn.addEventListener('click', () => {
        }
     }
 })
-// Audio API , playing a beep sound when a button click 
+// Audio API , playing a beep sound when a button click ( ref w3school)
 var bleep = new Audio ();
 bleep.src = "bleep.mp3"
 
